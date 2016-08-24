@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="ALL" packages="org.graylog2.log4j2">
+    <Appenders>
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout pattern="%d{dd.MM.yyyy HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg - %X%n"/>
+        </Console>
+        <GELF name="GELFAppender" server="127.0.0.1" port="12201" hostName="example.org" protocol="TCP"
+              additionalFields="jvm=${sys:java.version}"/>
+    </Appenders>
+    <Loggers>
+        <Root level="INFO">
+            <AppenderRef ref="Console"/>
+            <AppenderRef ref="GELFAppender"/>
+        </Root>
+    </Loggers>
+</Configuration>
